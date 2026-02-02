@@ -5,6 +5,7 @@ import merchantRouter from './modules/merchant/merchant.controller';
 import productRouter from './modules/product/product.controller';
 import orderRouter from './modules/order/order.controller';
 import reviewRouter from './modules/reviews/review.controller';
+import promotionRouter from './modules/promotion/promtion.controller';
 
 
 const app = express()
@@ -36,6 +37,7 @@ app.use('/merchants', merchantRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 app.use('/reviews', reviewRouter);
+app.use('/promotions', promotionRouter);
 
 
 

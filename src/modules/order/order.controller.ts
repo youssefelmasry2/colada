@@ -4,9 +4,9 @@ import { createOrder , getOrdersByUser , getAllOrders , getOrdersByMerchant , up
 const router = express.Router();
 
 router.post('/', async (req: Request, res: Response) => {
-    const { userId, merchantId, items } = req.body;
+    const { userId, merchantId, items , promotionCode } = req.body;
     try {
-        const newOrder = await createOrder(userId, merchantId, items);
+        const newOrder = await createOrder(userId, merchantId, items, promotionCode);
         res.status(201).json(newOrder);
     } catch (error) {
         console.error(error);
