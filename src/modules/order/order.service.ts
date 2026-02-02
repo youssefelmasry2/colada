@@ -2,7 +2,7 @@ import Order from "./order.model";
 import { getPriceSnapshot } from "../product/product.service";
 import { getUserById } from "../users/users.service";
 import { getMerchantById } from "../merchant/merchant.service";
-import { getPromotionByCode , validateAndIncrementCode } from "../promotion/promotion.service";
+import { validateAndIncrementCode } from "../promotion/promotion.service";
 
 export const createOrder = async (
     userId: string,

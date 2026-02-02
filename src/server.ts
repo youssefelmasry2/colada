@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import userRouter from './modules/users/users.controller';
 import merchantRouter from './modules/merchant/merchant.controller';
 import productRouter from './modules/product/product.controller';
@@ -7,9 +8,11 @@ import orderRouter from './modules/order/order.controller';
 import reviewRouter from './modules/reviews/review.controller';
 import promotionRouter from './modules/promotion/promtion.controller';
 
+dotenv.config();
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+const mongodbUri = process.env.MONGODB_URI || ""
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!')
@@ -17,9 +20,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use(express.json());
 
-mongoose.connect(
-    'mongodb://admin:password@127.0.0.1:27017/ecommerce?authSource=admin'
-);
+mongoose.connect(mongodbUri);
 
 const db = mongoose.connection;
 
