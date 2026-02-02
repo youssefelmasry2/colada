@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import userRouter from './modules/users/users.controller';
 import merchantRouter from './modules/merchant/merchant.controller';
 import productRouter from './modules/product/product.controller';
+import orderRouter from './modules/order/order.controller';
 
 
 const app = express()
@@ -32,6 +33,7 @@ db.once('open', () => {
 app.use('/users', userRouter);
 app.use('/merchants', merchantRouter);
 app.use('/products', productRouter);
+app.use('/orders', orderRouter);
 
 
 
