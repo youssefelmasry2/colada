@@ -29,6 +29,10 @@ export const getAllProducts = async () => {
     return await Product.find();
 }
 
+export const getProductById = async (productId: string) => {
+    return await Product.findById(productId);
+}
+
 export const getPriceSnapshot = async (productIds: string[]): Promise<number[]> => {
     const products = await Product.find({ _id: { $in: productIds } });
     return products.map(product => product.price);

@@ -4,6 +4,7 @@ import userRouter from './modules/users/users.controller';
 import merchantRouter from './modules/merchant/merchant.controller';
 import productRouter from './modules/product/product.controller';
 import orderRouter from './modules/order/order.controller';
+import reviewRouter from './modules/reviews/review.controller';
 
 
 const app = express()
@@ -34,6 +35,7 @@ app.use('/users', userRouter);
 app.use('/merchants', merchantRouter);
 app.use('/products', productRouter);
 app.use('/orders', orderRouter);
+app.use('/reviews', reviewRouter);
 
 
 
