@@ -59,6 +59,8 @@ Review
 - Each promotion belongs to one merchant only
 - Everything is in the same currency
 - OrderItems store a price snapshot so if product price changes later, order history stays accurate
+- No MongoDB transactions - operations aren't atomic, so if something fails mid-order there's no rollback
+- Prices are stored as regular Numbers, not Decimal - good enough for this but not ideal for real money stuff 
 - Error handling isn't perfect - most errors just return 500 to the client. I'm sure I'll adapt to whatever patterns are already in place once I'm in the codebase.
 
 ## What I got done
