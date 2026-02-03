@@ -7,6 +7,7 @@ import productRouter from './modules/product/product.controller';
 import orderRouter from './modules/order/order.controller';
 import reviewRouter from './modules/reviews/review.controller';
 import promotionRouter from './modules/promotion/promtion.controller';
+import reportRouter from './modules/reports/report.controller';
 
 dotenv.config();
 
@@ -39,7 +40,7 @@ app.use('/products', productRouter);
 app.use('/orders', orderRouter);
 app.use('/reviews', reviewRouter);
 app.use('/promotions', promotionRouter);
-
+app.use('/reports', reportRouter);
 
 
 
