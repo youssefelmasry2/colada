@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const promotionSchema = new mongoose.Schema({
     merchant: { type: mongoose.Schema.Types.ObjectId, ref: 'Merchant', required: true },
-    code : { type: String, required: true, unique: true },
+    code : { type: String, required: true, unique: true , index: true },
+    //  wanted to make codes unique per merchant 
     discountPercentage : { type: Number, required: true, min: 0, max: 100 },
     validFrom : { type: Date, required: true },
     validTo : { type: Date, required: true },

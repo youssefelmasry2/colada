@@ -3,7 +3,7 @@ import { orderItemSchema } from "./order-item.model";
 
 const orderSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-    merchant: { type: mongoose.Schema.Types.ObjectId, ref: 'Merchant', required: true },
+    merchant: { type: mongoose.Schema.Types.ObjectId, ref: 'Merchant', required: true , index: true },
     promotion : { type: mongoose.Schema.Types.ObjectId, ref: 'Promotion' ,default: null },
     items: { type: [orderItemSchema], required: true }, 
     totalAmount: { type: Number, required: true },
