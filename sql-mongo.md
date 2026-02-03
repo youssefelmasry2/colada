@@ -15,4 +15,9 @@
 | MERGE INTO TABLE | `$merge` |
 | UNION ALL | `$unionWith` |
 
+
+
+$ne = not
+$unwind = breaks items from array to multiple objects
+
 source : https://www.mongodb.com/docs/manual/reference/sql-aggregation-comparison/

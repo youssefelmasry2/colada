@@ -23,5 +23,26 @@ export const getMerchantOrdersBreakdown = async (merchantId: string) => {
     return result;
 };
 
+export const getTopProducts = async (merchantId : string) => {
+    const result = await Order.aggregate([
+        {
+            $match: {
+                merchant: new mongoose.Types.ObjectId(merchantId),
+                status: 'Delivered'
+            }
+        },
+        {
+            $unwind: '$items'
+        },
+        {
+            $group: {
+                _id: '$items.product',
+                totalSold: { $sum: '$items.quantity' },
+                totalRevenue: { $sum: { $multiply: ['$items.quantity', '$items.price'] } },
+            }
+        },
+    ]);
+    return result;
+} 
 
 
