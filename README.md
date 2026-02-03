@@ -10,6 +10,41 @@ Then go to:
 - http://localhost for the API
 - http://localhost:8081 for Mongo Express (database GUI)
 
+## API Endpoints
+
+### Users
+- `GET /users` - get all users
+- `POST /users` - create user `{ name, email, password }`
+
+### Merchants
+- `GET /merchants` - get all merchants
+- `POST /merchants` - create merchant `{ name, email, password, storeName, logo_url? }`
+
+### Products
+- `GET /products` - get all products
+- `GET /products/merchant/:merchantId` - get products by merchant
+- `POST /products` - create product `{ name, description, price, stock, category, merchantId }`
+
+### Orders
+- `GET /orders` - get all orders
+- `GET /orders/user/:userId` - get orders by user
+- `GET /orders/merchant/:merchantId` - get orders by merchant
+- `POST /orders` - create order `{ userId, merchantId, items: [{ product, quantity }], promotionCode? }`
+- `PUT /orders/:orderId/status` - update order status `{ status: 'Pending' | 'Delivered' | 'Cancelled' }`
+
+### Promotions
+- `GET /promotions` - get all promotions
+- `GET /promotions/merchant/:merchantId` - get promotions by merchant
+- `POST /promotions` - create promotion `{ merchantId, code, discountPercentage, validFrom, validTo }`
+
+### Reviews
+- `GET /reviews/product/:productId` - get reviews for a product
+- `GET /reviews/user/:userId` - get reviews by user
+- `POST /reviews` - create review `{ userId, productId, rating, comment? }`
+
+### Reports
+- `GET /reports/merchant/:merchantId/orders-breakdown` - get merchant orders breakdown by status
+
 ## Data Model & Relationships
 
 ```
@@ -55,6 +90,7 @@ Review
 ## Assumptions I made
 
 - Users are already authenticated (no auth/JWT stuff implemented)
+- If I had auth implemented, I wouldn't accept userId from the client  I'd extract it from the token/session instead
 - Stock doesn't run out - didn't add stock validation when creating orders
 - Each promotion belongs to one merchant only
 - Everything is in the same currency
@@ -62,6 +98,8 @@ Review
 - No MongoDB transactions - operations aren't atomic, so if something fails mid-order there's no rollback
 - Prices are stored as regular Numbers, not Decimal - good enough for this but not ideal for real money stuff 
 - Error handling isn't perfect - most errors just return 500 to the client. I'm sure I'll adapt to whatever patterns are already in place once I'm in the codebase.
+
+- There's a lot more I'm happy to discuss in a meeting
 
 ## What I got done
 
